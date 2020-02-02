@@ -74,9 +74,27 @@ public class Indexcontroller {
             String headname=headerNames.nextElement();
             stringBuffer.append(headname+"|||"+"<br>");
         }
+        Cookie[] cookies=request.getCookies();
+       for (Cookie cookie:cookies
+            ) {
+           stringBuffer.append(cookie+"|||"+"<br>");
+       }
         return response.toString()+"<br>"+jessionid+"<br>"+session.toString()+stringBuffer;
    }
 
+   @RequestMapping(path = "/exceptiontest")
+   @ResponseBody
+   public  String except(@RequestParam(value = "exceptionnum",defaultValue = "1") int num){
+        if(num==0){
+        throw new IllegalArgumentException("sorry,参数错误！！！");
+        }
+       return indexservice.getnumber();
+   }
+    @ExceptionHandler
+    @ResponseBody
+    public String exceprionhandler(Exception e){
+        return "erro happens"+"|||"+e.getMessage();
+}
 
 
 
