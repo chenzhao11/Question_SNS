@@ -1,0 +1,11 @@
+<html>
+    <body>
+    #set($hello="hello velocity!")
+    $hello
+    #macro(hello $name,$color)
+
+        $name <p style="color: $color">你好</>
+    #end
+    #hello("zc")
+    </body>
+</html>
