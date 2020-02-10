@@ -17,10 +17,10 @@ public class IndexAspect {
 
     @Before("execution(* com.example.practice.*.*.*(..))")
     private void before(){
-        logger.info("方法使用之前被调用！");
+       // logger.info("方法使用之前被调用！");
     }
     @After("execution(* com.example.practice.*.*.*(..))")
     private void after(){
-        logger.info("   哈哈吧哈哈！方法使用之后被被调用！");
+        //logger.info("   哈哈吧哈哈！方法使用之后被被调用！");
     }
 }
