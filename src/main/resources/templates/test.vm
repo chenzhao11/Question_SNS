@@ -1,11 +1,5 @@
 <html>
-#foreach($viewobject in$viewObject)
-  id  $viewobject.user.id   <br>
-  name $viewobject.user.name   <br>
-    question $viewobject.question.content<br>
-      $viewobject.user.headUrl   <br>
-
-#end
-
-
+$!{user.headurl}
+$!{user.name}
+$!{user.toString}
 </html>

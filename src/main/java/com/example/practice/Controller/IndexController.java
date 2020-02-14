@@ -47,38 +47,32 @@ public class IndexController {
                 model.addAttribute("viewObject",objectList);
                 return "index";
     }
-    @RequestMapping(path = "/authorlatest")
+    @RequestMapping(path = "/usermainpage")
     String authorlatest(@RequestParam("userid") int userid,Model model){
         List<ViewObject> objectList=getViewObjectList(userid,0,10);
         model.addAttribute("viewObject",objectList);
         return "index";
     }
 
-    @RequestMapping(path = {"/test"})
-    @ResponseBody
-    String indextest( HttpSession session){
-        List<ViewObject> objectList=getViewObjectList(0,20,10);
-        StringBuffer stringBuffer=new StringBuffer();
-        for (ViewObject object:objectList
-             ) {
-            stringBuffer.append(object.get("user").toString()+"==========="+object.get("question").toString()
-            +"<br>");
-
-        }
-        return  stringBuffer.toString();
-
-    }
-
-
-
-
-
-
+//    @RequestMapping(path = {"/test"})
+//    @ResponseBody
+//    String indextest( HttpSession session){
+//        List<ViewObject> objectList=getViewObjectList(0,20,10);
+//        StringBuffer stringBuffer=new StringBuffer();
+//        for (ViewObject object:objectList
+//             ) {
+//            stringBuffer.append(object.get("user").toString()+"==========="+object.get("question").toString()
+//            +"<br>");
+//
+//        }
+//        return  stringBuffer.toString();
+//
+//    }
 
     @ExceptionHandler
     @ResponseBody
     String exceptionhandler(Exception e){
-        return "some erro hapens!"+"<br>"+e.getMessage();
+        return "some erro hapens!"+"<br>"+e.getMessage()+"<br>"+e.toString();
     }
 
 

@@ -64,7 +64,7 @@
                                                 <span class="label sr-only">赞同</span></button>
                                         </div>
                                         <div class="author-info">
-                                            <a href="http://127.0.0.1:8080/authorlatest?userid=$!{viewobject.user.id}"
+                                            <a href="http://127.0.0.1:8080/usermainpage?userid=$!{viewobject.user.id}"
                                                data-tip="p$t$zhao-yong-feng" class="name">$!{viewobject.user.name}</a>
                                         </div>
                                         <div class="zm-item-vote-info" data-votecount="1082" data-za-module="VoteInfo">

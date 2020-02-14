@@ -26,6 +26,8 @@ public class UserService {
     public void insertuser(User user){
         userdao.insertuser(user);
     }
+    public User getUserByName(String name){return  userdao.selectbyname(name);}
+    public int getIdByName(String name){return  userdao.selectidbyname(name);}
 
 
 
