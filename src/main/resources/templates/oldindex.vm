@@ -9,22 +9,32 @@
                         <a href="https://nowcoder.com/settings/filter" class="zg-link-gray-normal">
                             <i class="zg-icon zg-icon-settings"></i>设置</a></span>
             </div>
+
             <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list"
                  data-widget="navigable"
                  data-navigable-options="{&quot;items&quot;:&quot;&gt; .zh-general-list .feed-content&quot;,&quot;offsetTop&quot;:-82}">
+
+
                 <a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button"
                    style="display:none"></a>
 
+
+
+
+
+
+
+
                 #foreach($viewobject in $viewObject)
+
 
                 <div id="js-home-feed-list" class="zh-general-list topstory clearfix"
                      data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}"
-                     data-delayed="true" data-za-module="TopStoryFeedList">
+                     data-delayed="true" data-za-module="TopStoryFeedList"  aria-posinset="center">
                     <div class="feed-item folding feed-item-hook feed-item-1
                         " feed-item-p="" data-type="p" id="feed-1" data-za-module="FeedItem" data-za-index="">
                         <meta itemprop="ZReactor" data-id="113477"
                               data-meta="{&quot;source_type&quot;: &quot;promotion_article&quot;, &quot;voteups&quot;: 1082, &quot;comments&quot;: 100, &quot;source&quot;: []}">
-
 
 
                         <div class="feed-item-inner">
@@ -65,8 +75,8 @@
                                         </div>
                                         <div class="post-content" data-author-name="$!{viewobject.user.name}"
                                              data-entry-url="http://zhuanlan.zhihu.com/p/$!{viewobject.user.id}">
-                                            <textarea>${viewobject.question.content}</textarea>
-                                            <div class="zh-summary summary clearfix">
+                                                <textarea>${viewobject.question.content}</textarea>
+                                                    <div class="zh-summary summary clearfix">
                                                 <a href="http://zhuanlan.zhihu.com/p/19831487" class="toggle-expand">显示全部</a>
                                             </div>
                                             <p class="hidden-default">
@@ -117,10 +127,13 @@
                         </div>
                     </div>
 
-                </div>
-            #end
+            </div>
+                #end
+
                 <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more"
                    style="">更多</a></div>
+
+
         </div>
     </div>
 </div>

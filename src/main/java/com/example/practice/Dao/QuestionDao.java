@@ -19,7 +19,7 @@ public interface QuestionDao {
      //mybatis会自动完成时间类型的转换！
     @Insert({" insert into ",TABLE_NAME," ( ",INSERT_FIELDS," ) values ( "+
     " #{title},#{content},#{createdDate},#{userId},#{commentCount})"})
-    void insertQuestion (Question question);
+    int insertQuestion (Question question);
     List<Question> selectLatestQuestions(@Param("userid") int userid,
                                          @Param("offset") int offset,
                                          @Param("limit") int limit);

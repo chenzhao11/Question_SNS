@@ -13,8 +13,15 @@ import java.util.List;
 public class QusestionService {
     @Autowired
     QuestionDao questionDao;
-   public void addquestion(Question question){
-        questionDao.insertQuestion(question);
+    @Autowired
+    SensitiveService sensitiveService ;
+   public int addquestion(Question question){
+        /*敏感词过滤*/
+
+       question.setContent(sensitiveService.filter(question.getContent()));
+       question.setTitle(sensitiveService.filter(question.getTitle()));
+
+        return questionDao.insertQuestion(question);
 
     }
 
