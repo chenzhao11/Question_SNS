@@ -1,5 +1,14 @@
 <html>
-$!{user.headurl}
-$!{user.name}
-$!{user.toString}
+
+
+
+    #foreach($viewObject in $viewObjectList)
+
+##
+##        ${viewObject.user.headUrl}<br>
+##        ${viewObject.user.name}<br>
+        ${viewObject.comment.content}<br>
+
+    #end
+
 </html>

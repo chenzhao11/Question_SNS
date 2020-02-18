@@ -1,0 +1,179 @@
+#parse("head.vm")
+
+<script type="text/javascript" async="" src="../scripts/za-0.1.1.min.js"></script>
+<script async="" src="https://ssl.google-analytics.com/ga.js"></script>
+<link rel="search" type="application/opensearchdescription+xml" href="" title="牛客">
+<link rel="stylesheet" href="../styles/detail.css">
+<script src="../scripts/instant.e7a17de6.js"></script>
+
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <a class="zu-global-notify-close" href="javascript:;" title="关闭" name="close">x</a>
+            <span class="zu-global-notify-icon"></span>
+            <span class="zu-global-notify-msg"></span>
+        </div>
+    </div>
+</div>
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-redirect-info" style="display:none"></div>
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-notification-summary" style="display:none;">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <span class="zu-global-notify-icon"></span>
+            <ul class="zu-question-notify-wrap"></ul>
+        </div>
+    </div>
+</div>
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question"
+     id="zh-single-question-page" data-urltoken="36301524" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <meta itemprop="isTopQuestion" content="false">
+            <meta itemprop="visitsCount" content="402">
+            <div id="zh-question-title" data-editable="true" class="zm-editable-status-normal">
+                <h2 class="zm-item-title">
+
+                    <span class="zm-editable-content">$!{question.title}</span>
+
+                </h2>
+            </div>
+            <div id="zh-question-detail" class="zm-item-rich-text zm-editable-status-normal" data-resourceid="6727688"
+                 data-action="/question/detail">
+                <div class="zm-editable-content">$!{question.content}</div>
+            </div>
+            <div class="zm-side-section">
+                <div class="zm-side-section-inner" id="zh-question-side-header-wrap">
+                    <button data-follow="q:m:button" class="follow-button zg-follow zg-btn-green" data-id="6727688">
+                        关注问题
+                    </button>
+                    <div class="zg-btn-white goog-inline-block goog-menu-button" id="zh-question-operation-menu"
+                         role="button" aria-expanded="false" tabindex="0" aria-haspopup="true"
+                         style="-webkit-user-select: none;">
+                        <div class="goog-inline-block goog-menu-button-outer-box">
+                            <div class="goog-inline-block goog-menu-button-inner-box">
+                                <div class="goog-inline-block goog-menu-button-caption">
+                                    <i class="zg-icon-dropdown-menu zg-icon"></i>
+                                    <b class="hide-text">设置</b></div>
+                                <div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goog-menu goog-menu-vertical" role="menu" aria-haspopup="true"
+                         style="-webkit-user-select: none; visibility: visible; left: 92px; top: 33px; display: none;">
+                        <div class="goog-menuitem" role="menuitem" id=":8" style="-webkit-user-select: none;">
+                            <div class="goog-menuitem-content" style="-webkit-user-select: none;">使用匿名身份</div>
+                        </div>
+                        <div class="goog-menuitem" role="menuitem" id=":9" style="-webkit-user-select: none;">
+                            <div class="goog-menuitem-content" style="-webkit-user-select: none;">问题重定向</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        #foreach($viewObject in $viewObjectList )
+            <div id="zh-question-answer-wrap" data-pagesize="10" class="zh-question-answer-wrapper navigable"
+                 data-widget="navigable" data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}"
+                 data-init="{&quot;params&quot;: {&quot;url_token&quot;: 36301524, &quot;pagesize&quot;: 10, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}">
+                <div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemprop="topAnswer" itemscope=""
+                     itemtype="http://schema.org/Answer" data-aid="22162611" data-atoken="66862039" data-collapsed="0"
+                     data-created="1444310527" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1"
+                     data-za-module="AnswerItem">
+                    <link itemprop="url" href="">
+                    <meta itemprop="answer-id" content="22162611">
+                    <meta itemprop="answer-url-token" content="66862039">
+                    <a class="zg-anchor-hidden" name="answer-22162611"></a>
+                    <div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+                        <button class="up" aria-pressed="false" title="赞同">
+                            <i class="icon vote-arrow"></i>
+                            <span class="count">28</span>
+                            <span class="label sr-only">赞同</span></button>
+                        <button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+                            <i class="icon vote-arrow"></i>
+                            <span class="label sr-only">反对，不会显示你的姓名</span></button>
+                    </div>
+                    <div class="answer-head">
+                        <div class="zm-item-answer-author-info">
+                            <a class="zm-item-link-avatar avatar-link" href="" target="_blank"
+                               data-tip="p$t$yingxiaodao">
+                                <img src="$!{viewObject.user.headUrl}"
+                                     class="zm-list-avatar avatar"></a>
+                            <a class="author-link" data-tip="p$t$yingxiaodao" target="_blank" href="">$!{viewObject.user.name}</a>
+                        <div class="zm-item-vote-info" data-votecount="28" data-za-module="VoteInfo">
+                                <span class="voters text">
+                                    <a href="" class="more text">
+                                        <span class="js-voteCount">28</span>&nbsp;人赞同</a></span>
+                        </div>
+                    </div>
+
+
+                    <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="6727688"
+                         data-action="/answer/content" data-author-name="营销岛"
+                         data-entry-url="/question/36301524/answer/66862039">
+                        <div class="zh-summary summary clearfix" style="display">
+                                 ${viewObject.comment.content}
+                        </div>
+
+                    </div>
+
+
+                    <a class="zg-anchor-hidden ac" name="22162611-comment"></a>
+                    <div class="zm-item-meta answer-actions clearfix js-contentActions">
+                        <div class="zm-meta-panel">
+                            <a itemprop="url" class="answer-date-link meta-item" target="_blank"
+                               href="">发布于$date.format("yyyy-MM-dd HH-mm-ss",${viewObject.comment.createdDate})</a>
+                            <a href="" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+                                <i class="z-icon-comment"></i>$!{question.commentCount}</a>
+                            <a href="" class="meta-item zu-autohide js-thank" data-thanked="false">
+                                <i class="z-icon-thank"></i>感谢</a>
+
+                            <button class="item-collapse js-collapse" style="transition: none;">
+                                <i class="z-icon-fold"></i>收起
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        #end
+            <div id="zh-question-collapsed-link" class="zu-question-collap-title" style="display:none">
+                <a href="javascript:;" name="expand" class="zg-link-gray" id="zh-question-collapsed-switcher">
+                    <span id="zh-question-collapsed-num">0</span>个回答被折叠</a>（
+                <a target="_blank" href="" class="zg-link-gray">为什么？</a>）
+            </div>
+            <div id="zh-question-collapsed-wrap" class="zh-question-answer-wrapper" style="display:none"></div>
+            <a name="draft"></a>
+
+
+        <form action="/addComment" method="post">
+            <input type="hidden" name="questionId" value="$!{question.id}"/>
+            <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+                <div class="zm-editable-editor-wrap" style="">
+                    <div class="zm-editable-editor-outer">
+                        <div class="zm-editable-editor-field-wrap">
+                            <textarea name="content" required=true id="content"
+                                      class="zm-editable-editor-field-element editable" style="width:100%;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="zm-command clearfix">
+                            <span class=" zg-right">
+                                <button type="submit" class="submit-button zg-btn-blue">发布回答</button></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- 版权演示 -->
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

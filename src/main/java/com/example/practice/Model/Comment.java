@@ -17,26 +17,17 @@ public class Comment {
     private Date createdDate;
     private int entityId;
     private int entityType;
+    private int status;
     public Comment(){}
-    public Comment(int id, String content, int userId, Date createdDate, int entityId, int entityType) {
+
+    public Comment(int id, String content, int userId, Date createdDate, int entityId, int entityType, int status) {
         this.id = id;
         this.content = content;
         this.userId = userId;
         this.createdDate = createdDate;
         this.entityId = entityId;
         this.entityType = entityType;
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", userId=" + userId +
-                ", createdDate=" + createdDate +
-                ", entityId=" + entityId +
-                ", entityType=" + entityType +
-                '}';
+        this.status = status;
     }
 
     public int getId() {
@@ -85,5 +76,13 @@ public class Comment {
 
     public void setEntityType(int entityType) {
         this.entityType = entityType;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

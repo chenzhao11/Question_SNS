@@ -1,9 +1,7 @@
 package com.example.practice.Dao;
 
 import com.example.practice.Model.Question;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -20,8 +18,10 @@ public interface QuestionDao {
     @Insert({" insert into ",TABLE_NAME," ( ",INSERT_FIELDS," ) values ( "+
     " #{title},#{content},#{createdDate},#{userId},#{commentCount})"})
     int insertQuestion (Question question);
-    List<Question> selectLatestQuestions(@Param("userid") int userid,
-                                         @Param("offset") int offset,
-                                         @Param("limit") int limit);
+    List<Question> selectLatestQuestions(@Param("userid") int userid, @Param("offset") int offset, @Param("limit") int limit);
+    @Select({"select * from question where id=#{questionId}"})
+    Question selectQuestion (int questionId);
+    @Update({"update question set comment_count=comment_count+1 where id=#{questionId}"})
+   void  updateCommentCount(int questionId);
 
 }

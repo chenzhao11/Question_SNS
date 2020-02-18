@@ -1,0 +1,91 @@
+#parse("head.vm")
+
+    <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/font-awesome.min.css">
+
+    <link rel="stylesheet" media="all" href="../styles/letter.css">
+
+    <script src="../scripts/hm.js"></script>
+    <script src="../scripts/detail.js"></script>
+
+    <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery.qrcode.min.js"></script>
+<div id="main">
+
+
+    <div class="zg-wrap zu-main clearfix ">
+        <ul class="letter-chatlist">
+
+            #foreach($viewObject in $viewObjectList)
+
+            <li id="msg-item-3838847">
+                <a class="list-head">
+                    <img alt="头像" src="$!{viewObject.user.headUrl}">
+                </a>
+                <div class="tooltip fade right in">
+                    <div class="tooltip-arrow"></div>
+                    <div class="tooltip-inner letter-chat clearfix">
+                        <div class="letter-info">
+                            <p class="letter-time">$date.format("yyyy-MM-dd HH-mm-ss",${viewObject.message.createdDate})</p>
+                            <a href="javascript:void(0);" id="del-link" name="3838847">删除</a>
+                        </div>
+                        <p class="chat-content">
+                          $!{viewObject.message.content}
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+            #end
+
+        </ul>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+
+            // If really is weixin
+            $(document).on('WeixinJSBridgeReady', function () {
+
+                $('.weixin-qrcode-dropdown').show();
+
+                var options = {
+                    "img_url": "",
+                    "link": "http://nowcoder.com/j/wt2rwy",
+                    "desc": "",
+                    "title": "读《Web 全栈工程师的自我修养》"
+                };
+
+                WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                    WeixinJSBridge.invoke('sendAppMessage', options, function (res) {
+                        // _report('send_msg', res.err_msg)
+                    });
+                });
+
+                WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                    WeixinJSBridge.invoke('shareTimeline', options, function (res) {
+                        // _report('send_msg', res.err_msg)
+                    });
+                });
+
+                // $(window).on('touchmove scroll', function() {
+                //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                //     $('div.backdrop').show();
+                //     $('div.share-help').show();
+                //   } else {
+                //     $('div.backdrop').hide();
+                //     $('div.share-help').hide();
+                //   }
+                // });
+
+            });
+
+        })
+    </script>
+</div>
+
+#parse("foot.vm")

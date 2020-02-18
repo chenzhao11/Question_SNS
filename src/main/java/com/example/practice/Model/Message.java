@@ -8,9 +8,20 @@ public class Message {
     private int fromid;
     private int toid;
     private String content;
-    private String conversation_id;
+    private String conversationId;
     private Date createdDate;
+    private int hasRead;
     public  Message(){}
+
+    public Message(int id, int fromid, int toid, String content, String conversationId, Date createdDate, int hasRead) {
+        this.id = id;
+        this.fromid = fromid;
+        this.toid = toid;
+        this.content = content;
+        this.conversationId = conversationId;
+        this.createdDate = createdDate;
+        this.hasRead = hasRead;
+    }
 
     public int getId() {
         return id;
@@ -44,12 +55,12 @@ public class Message {
         this.content = content;
     }
 
-    public String getConversation_id() {
-        return conversation_id;
+    public String getConversationId() {
+        return conversationId;
     }
 
-    public void setConversation_id(String conversation_id) {
-        this.conversation_id = conversation_id;
+    public void setConversationId(String conversationId) {
+        this.conversationId = conversationId;
     }
 
     public Date getCreatedDate() {
@@ -60,38 +71,11 @@ public class Message {
         this.createdDate = createdDate;
     }
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", fromid=" + fromid +
-                ", toid=" + toid +
-                ", content='" + content + '\'' +
-                ", conversation_id='" + conversation_id + '\'' +
-                ", createdDate=" + createdDate +
-                '}';
+    public int getHasRead() {
+        return hasRead;
     }
 
-    public Message(int id, int fromid, int toid, String content, String conversation_id, Date createdDate) {
-        this.id = id;
-        this.fromid = fromid;
-        this.toid = toid;
-        this.content = content;
-        this.conversation_id = conversation_id;
-        this.createdDate = createdDate;
+    public void setHasRead(int hasRead) {
+        this.hasRead = hasRead;
     }
-/**
-     *  `id` INT NOT NULL AUTO_INCREMENT,
-     *   `fromid` INT NOT NULL,
-     *   `toid` INT NOT NULL,
-     *   `content` LONGTEXT NULL,
-     *   `conversation_id` INT NOT NULL,
-     *   `created_date` DATETIME NOT NULL,
-     */
-
-
-
-
-
-
 }

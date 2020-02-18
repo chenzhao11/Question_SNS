@@ -31,7 +31,7 @@
                             <div class="avatar">
                                 <a title="$!{viewobject.user.name}" data-tip="p$t$zhao-yong-feng"
                                    class="zm-item-link-avatar" target="_blank"
-                                   href="https://nowcoder.com/people/${viewobject.user.headurl}">
+                                   href="${viewobject.user.headurl}">
                                     <img src="$!{viewobject.user.headUrl}"
                                          class="zm-item-img-avatar"></a>
                             </div>
@@ -42,7 +42,7 @@
                                     <meta itemprop="post-url-token" content="19831487">
                                     <h2 class="feed-title">
                                         <a target="_blank" class="post-link"
-                                           href="http://zhuanlan.zhihu.com/p/19831487">$!{viewobject.question.title}</a>
+                                           href="/detail?questionId=$!{viewobject.question.id}">$!{viewobject.question.title}</a>
                                     </h2>
                                     <div class="entry-body post-body js-collapse-body">
                                         <div class="zm-item-vote">
@@ -55,7 +55,7 @@
                                                 <span class="label sr-only">赞同</span></button>
                                         </div>
                                         <div class="author-info">
-                                            <a href="http://127.0.0.1:8080/usermainpage?userid=$!{viewobject.user.id}"
+                                            <a href="/usermainpage?userid=$!{viewobject.user.id}"
                                                data-tip="p$t$zhao-yong-feng" class="name">$!{viewobject.user.name}</a>
                                         </div>
                                         <div class="zm-item-vote-info" data-votecount="1082" data-za-module="VoteInfo">
@@ -64,14 +64,14 @@
                                                         <span class="js-voteCount">1082</span>&nbsp;人赞</a></span>
                                         </div>
                                         <div class="post-content" data-author-name="$!{viewobject.user.name}"
-                                             data-entry-url="http://zhuanlan.zhihu.com/p/$!{viewobject.user.id}">
+                                             data-entry-url="http://127.0.0.1/usermainpage?userid=$!{viewobject.user.id}">
                                             <textarea>${viewobject.question.content}</textarea>
                                             <div class="zh-summary summary clearfix">
-                                                <a href="http://zhuanlan.zhihu.com/p/19831487" class="toggle-expand">显示全部</a>
+                                                <a href="/detail?questionId=$!{viewobject.question.id}" class="toggle-expand">显示全部</a>
                                             </div>
-                                            <p class="hidden-default">
+                                            <p >
                                                 <a class="post-link entry-link" target="_blank"
-                                                   href="http://zhuanlan.zhihu.com/p/19831487">2014-08-24</a></p>
+                                                   href="/detail?questionId=$!{viewobject.question.id}">$!{date.format("yyyy-MM-dd  HH-mm-ss",$!{viewobject.question.createdDate})}</a></p>
                                         </div>
                                     </div>
                                     <div class="feed-meta">
