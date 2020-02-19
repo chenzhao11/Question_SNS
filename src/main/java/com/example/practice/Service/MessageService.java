@@ -19,4 +19,15 @@ public class MessageService {
     public void sendMessage(Message message){
        messageDao.insertMessage(message);
     }
+    public List<Message> allMessageList(int toUserId){
+       return  messageDao.selectMessageList(toUserId);
+    }
+    public int getUnread(int toUserId,String conversationId){
+       return messageDao.getUnread(toUserId,conversationId);
+    }
+    public void updateHasRead(int toid,String conversationid){
+       messageDao.updateHasRead(toid,1,conversationid);
+    }
+
+
 }

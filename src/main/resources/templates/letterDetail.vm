@@ -27,7 +27,6 @@
                     <div class="tooltip-inner letter-chat clearfix">
                         <div class="letter-info">
                             <p class="letter-time">$date.format("yyyy-MM-dd HH-mm-ss",${viewObject.message.createdDate})</p>
-                            <a href="javascript:void(0);" id="del-link" name="3838847">删除</a>
                         </div>
                         <p class="chat-content">
                           $!{viewObject.message.content}
@@ -87,5 +86,5 @@
         })
     </script>
 </div>
-
+<script type="text/javascript" src="/scripts/main/site/detail.js"></script>
 #parse("foot.vm")

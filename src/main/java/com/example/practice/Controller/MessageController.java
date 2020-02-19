@@ -38,19 +38,20 @@ public class MessageController {
 
     @RequestMapping(path = "/letterDetail")
     String getLetterDetail(@RequestParam(value = "conversationId") String conversationId, Model model) {
-        List<ViewObject> viewObjectList=new ArrayList<>();
+        List<ViewObject> viewObjectList = new ArrayList<>();
         List<Message> messageList = messageService.getMessageByConversationId(conversationId);
 //        model.addAttribute("messageList", messageList);
-        for (Message message:messageList
-             ) {
-            ViewObject viewObject=new ViewObject();
-            User user=userService.getuserbyid(message.getFromid());
-            viewObject.set("user",user);
-            viewObject.set("message",message);
+        messageService.updateHasRead(userHolder.getUser().getId(),conversationId);
+        for (Message message : messageList
+        ) {
+            ViewObject viewObject = new ViewObject();
+            User user = userService.getuserbyid(message.getFromid());
+            viewObject.set("user", user);
+            viewObject.set("message", message);
             viewObjectList.add(viewObject);
         }
 
-        model.addAttribute("viewObjectList",viewObjectList);
+        model.addAttribute("viewObjectList", viewObjectList);
         return "letterDetail";
     }
 
@@ -62,8 +63,8 @@ public class MessageController {
         }
         try {
             User toUser = userService.getUserByName(toName);
-            if (toUser==null){
-                return GetJson.getErroJson(1,"此用户不存在！");
+            if (toUser == null) {
+                return GetJson.getErroJson(1, "此用户不存在！");
             }
             Message message = new Message();
             content = HtmlUtils.htmlEscape(content);
@@ -86,16 +87,29 @@ public class MessageController {
             logger.info(e.toString());
             return GetJson.getErroJson(1, "发送私信失败！");
         }
-        return GetJson.getJson(0) ;
+        return GetJson.getJson(0);
     }
-@RequestMapping(path = "/msg/list")
-    String getLetterList(){
+
+    @RequestMapping(path = "/msg/list")
+    String getLetterList(Model model) {
 
         /*  加上用户id查所有message*/
+        List<Message> allMessageList = messageService.allMessageList(userHolder.getUser().getId());
+        List<ViewObject> viewObjectList=new ArrayList<>();
+        for (Message message:allMessageList) {
+            User user=userService.getuserbyid(message.getFromid());
+            int unread=messageService.getUnread(userHolder.getUser().getId(),message.getConversationId());
+            ViewObject viewObject = new ViewObject();
+            viewObject.set("user",user);
+            viewObject.set("message",message);
+            viewObject.set("unread",unread);
+            viewObjectList.add(viewObject);
+        }
 
+        model.addAttribute("viewObjectList", viewObjectList);
 
         return "letter";
 
-}
+    }
 
 }
