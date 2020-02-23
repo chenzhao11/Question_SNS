@@ -5,6 +5,7 @@ import com.example.practice.Model.User;
 import redis.clients.jedis.*;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class JedisTest {
@@ -112,31 +113,35 @@ public class JedisTest {
 
         }
 
-        String zkey2="zkey2";
-        jedis.zadd(zkey2,1,"num1");
-        jedis.zadd(zkey2,1,"num2");
-        jedis.zadd(zkey2,1,"num3");
-        jedis.zadd(zkey2,1,"num4");
-        jedis.zadd(zkey2,1,"num5");
-        jedis.zadd(zkey2,1,"num6");
-        print(28,jedis.zlexcount(zkey2,"[3","[6").toString());
+        String zkey2 = "zkey2";
+        jedis.zadd(zkey2, 1, "num1");
+        jedis.zadd(zkey2, 1, "num2");
+        jedis.zadd(zkey2, 1, "num3");
+        jedis.zadd(zkey2, 1, "num4");
+        jedis.zadd(zkey2, 1, "num5");
+        jedis.zadd(zkey2, 1, "num6");
+        print(28, jedis.zlexcount(zkey2, "[3", "[6").toString());
         print(42, jedis.zlexcount(zkey2, "[b", "[d").toString());
-        print(29,jedis.zlexcount(zkey2,"-","+").toString());
-        print(31,jedis.zlexcount(zkey2,"[nu","[nu").toString());
-        print(32,jedis.zlexcount(zkey2,"(n","(p").toString());
-        print(33,jedis.zremrangeByLex(zkey2,"[n","(o").toString());
-        print(34,jedis.zrangeByLex(zkey2,"[n","[o").toString());
+        print(29, jedis.zlexcount(zkey2, "-", "+").toString());
+        print(31, jedis.zlexcount(zkey2, "[nu", "[nu").toString());
+        print(32, jedis.zlexcount(zkey2, "(n", "(p").toString());
+        print(33, jedis.zremrangeByLex(zkey2, "[n", "(o").toString());
+        print(34, jedis.zrangeByLex(zkey2, "[n", "[o").toString());
 
-        User user=new User();
+        User user = new User();
         user.setName("zc");
         user.setSalt("hhh");
         user.setPassword("jgfdja");
-        String str= JSONObject.toJSONString(user);
-        jedis.set("user",str);
-        User user2=JSONObject.parseObject(jedis.get("user"),User.class);
-        print(35,user2.toString());
-
-
+        String str = JSONObject.toJSONString(user);
+        jedis.set("user", str);
+        User user2 = JSONObject.parseObject(jedis.get("user"), User.class);
+        print(35, user2.toString());
+        Transaction transaction = jedis.multi();
+        transaction.zadd("qq1", 1, "num1");
+        transaction.zadd("qq2", 2, "num2");
+        List<Object> objects = transaction.exec();
+        print(36, objects.toString());
+        transaction.close();
 
 
     }

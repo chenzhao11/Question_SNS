@@ -22,4 +22,9 @@ public interface CommentDao {
     int insertComment (Comment comment);
     @Select({"select * from comment where entity_type=#{entityType} and entity_id=#{entityId}"})
     List<Comment> selectComment(@Param("entityType") int entityType, @Param("entityId") int entityId);
+    @Select({"select * from comment where id=#{commentId}"})
+    Comment selectCommentbyid (@Param("commentId") int commentId);
+
+
+
 }

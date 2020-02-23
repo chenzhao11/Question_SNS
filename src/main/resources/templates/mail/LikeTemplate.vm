@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LikeMail</title>
+</head>
+<body>
+   尊敬的$!{user.name} 你好：<br>
+        有人对您的评论点了赞！！
+</body>
+</html>

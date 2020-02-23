@@ -29,6 +29,9 @@ public class CommentService {
     public List<Comment> getCommentList(int entityType,int questionId){
         return commentDao.selectComment(entityType,questionId);
     }
+    public  Comment selectCommentbyid(int commentid){
+        return commentDao.selectCommentbyid(commentid);
+    }
 
 
 }

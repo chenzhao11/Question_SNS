@@ -7,6 +7,7 @@ import com.example.practice.Service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
@@ -38,12 +39,6 @@ public class testcontroller {
         }
         return userHolder.getUser().toString();
 
-    }
-
-    @RequestMapping(path="/testurl")
-    String testurlheadurl() {
-        System.out.println(userHolder.getUser().toString());
-        return "test";
     }
 
 

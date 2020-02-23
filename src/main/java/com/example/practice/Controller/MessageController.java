@@ -55,7 +55,7 @@ public class MessageController {
         return "letterDetail";
     }
 
-    @RequestMapping(path = "/msg/addMessage")
+    @RequestMapping(path = "/msg/addMessage" )
     @ResponseBody
     String sendMessage(@RequestParam(value = "toName") String toName, @RequestParam(value = "content") String content) {
         if (userHolder.getUser() == null) {
