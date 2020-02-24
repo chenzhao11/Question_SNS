@@ -41,5 +41,21 @@ public class testcontroller {
 
     }
 
+//    @RequestMapping(path = "/followers")
+//    String flower(HttpServletRequest httpServletRequest) {
+//       return "followers";
+//
+//    }
+//    @RequestMapping(path = "/followees")
+//    String flowee(HttpServletRequest httpServletRequest) {
+//        return "followees";
+//
+//    }
+//
+//    @RequestMapping(path = "/profile")
+//    String flow(HttpServletRequest httpServletRequest) {
+//        return "profile";
+//
+//    }
 
 }

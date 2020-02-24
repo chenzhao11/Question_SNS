@@ -51,11 +51,11 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(path = "/usermainpage")
-    String authorlatest(@RequestParam("userid") int userid, Model model) {
-        List<ViewObject> objectList = getViewObjectList(userid, 0, 10);
-        model.addAttribute("viewObject", objectList);
-        return "index";
+    @RequestMapping(path = "/profile")
+    String authorlatest(@RequestParam("userId") int userid, Model model) {
+//        List<ViewObject> objectList = getViewObjectList(userid, 0, 10);
+//        model.addAttribute("viewObject", objectList);
+        return "profile";
     }
 
 //    @RequestMapping(path = {"/test"})
