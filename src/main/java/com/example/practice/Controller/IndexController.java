@@ -1,8 +1,8 @@
 package com.example.practice.Controller;
 
-import com.example.practice.Model.Question;
-import com.example.practice.Model.User;
-import com.example.practice.Model.ViewObject;
+import com.example.practice.Model.*;
+import com.example.practice.Service.CommentService;
+import com.example.practice.Service.FollowService;
 import com.example.practice.Service.QusestionService;
 import com.example.practice.Service.UserService;
 import com.sun.deploy.net.HttpResponse;
@@ -27,6 +27,13 @@ public class IndexController {
     UserService userService;
     @Autowired
     QusestionService qusestionService;
+    @Autowired
+    FollowService followService;
+    @Autowired
+    UserHolder userHolder;
+    @Autowired
+    CommentService commentService;
+
 
     List<ViewObject> getViewObjectList(int id, int offset, int limit) {
         List<Question> questionList = qusestionService.latestquestion(id, offset, limit);
@@ -35,8 +42,10 @@ public class IndexController {
         ) {
             ViewObject viewObject = new ViewObject();
             User user = userService.getuserbyid(question.getUserId());
+            int concern=followService.countFollower(EntityType.ENTITY_QUESTION,question.getId()).intValue();
             viewObject.set("user", user);
             viewObject.set("question", question);
+            viewObject.set("concern", concern);
             viewObjectList.add(viewObject);
 
         }
@@ -48,6 +57,8 @@ public class IndexController {
     String indexpage(Model model) {
         List<ViewObject> objectList = getViewObjectList(0, 0, 10);
         model.addAttribute("viewObject", objectList);
+
+
         return "index";
     }
 
@@ -55,6 +66,23 @@ public class IndexController {
     String authorlatest(@RequestParam("userId") int userid, Model model) {
 //        List<ViewObject> objectList = getViewObjectList(userid, 0, 10);
 //        model.addAttribute("viewObject", objectList);
+        ViewObject viewObject=new ViewObject();
+        User user=userService.getuserbyid(userid);
+        boolean followed=followService.isfollower(userHolder.getUser().getId(), EntityType.ENTITY_USER,userid);
+        int followerCount=followService.countFollower(EntityType.ENTITY_USER,userid).intValue();
+        int followeeCount=followService.countFollowee(userid,EntityType.ENTITY_USER).intValue();
+         int commentCount=commentService.countComment(userid);
+        viewObject.set("user",user);
+        viewObject.set("followed",followed);
+        viewObject.set("followerCount",followerCount);
+        viewObject.set("followeeCount",followeeCount);
+        viewObject.set("commentCount",commentCount);
+
+
+        model.addAttribute("viewObject",viewObject);
+
+
+
         return "profile";
     }
 

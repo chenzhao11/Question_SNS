@@ -46,13 +46,12 @@
                                     </h2>
                                     <div class="entry-body post-body js-collapse-body">
                                         <div class="zm-item-vote">
-                                            <a class="zm-item-vote-count js-expand js-vote-count" href="#"
-                                               data-bind-votecount="">1082</a></div>
+                                            <a class="zm-item-vote-count js-expand js-vote-count" href="/followQuestion?questionId=$!{viewobject.question.id}"  data-bind-votecount="">$!{viewobject.concern}</a></div>
                                         <div class="zm-votebar" data-za-module="VoteBar">
                                             <button class="up" aria-pressed="false" title="赞同">
                                                 <i class="icon vote-arrow"></i>
-                                                <span class="count">1082</span>
-                                                <span class="label sr-only">赞同</span></button>
+                                                <span class="count">$!{viewobject.concern}</span>
+                                                <span class="label sr-only">关注</span></button>
                                         </div>
                                         <div class="author-info">
                                             <a href="/usermainpage?userid=$!{viewobject.user.id}"
@@ -61,7 +60,7 @@
                                         <div class="zm-item-vote-info" data-votecount="1082" data-za-module="VoteInfo">
                                                 <span class="voters text">
                                                     <a href="#" class="more text">
-                                                        <span class="js-voteCount">1082</span>&nbsp;人赞</a></span>
+                                                        <span class="js-voteCount">$!{viewobject.concern}</span>&nbsp;人关注</a></span>
                                         </div>
                                         <div class="post-content" data-author-name="$!{viewobject.user.name}"
                                              data-entry-url="http://127.0.0.1/usermainpage?userid=$!{viewobject.user.id}">

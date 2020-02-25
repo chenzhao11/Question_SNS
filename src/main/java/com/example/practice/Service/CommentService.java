@@ -32,6 +32,9 @@ public class CommentService {
     public  Comment selectCommentbyid(int commentid){
         return commentDao.selectCommentbyid(commentid);
     }
+    public int countComment(int userId){
+        return  commentDao.countComment(userId);
+    }
 
 
 }

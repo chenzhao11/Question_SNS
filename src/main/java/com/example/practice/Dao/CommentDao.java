@@ -24,6 +24,8 @@ public interface CommentDao {
     List<Comment> selectComment(@Param("entityType") int entityType, @Param("entityId") int entityId);
     @Select({"select * from comment where id=#{commentId}"})
     Comment selectCommentbyid (@Param("commentId") int commentId);
+    @Select({"select count(*) from comment where user_id=#{userId}"})
+    int countComment (@Param("userId") int userId);
 
 
 

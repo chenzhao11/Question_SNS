@@ -189,8 +189,6 @@ public class RedisAdapter implements InitializingBean {
         } catch (Exception e) {
             logger.error("redis multi错误！");
             e.printStackTrace();
-        } finally {
-            jedis.close();
         }
         return null;
     }
@@ -204,8 +202,7 @@ public class RedisAdapter implements InitializingBean {
         } catch (Exception e) {
             logger.error(" get  jedis错误！");
             e.printStackTrace();
-        } finally {
-            jedis.close();
+
         }
         return null;
     }

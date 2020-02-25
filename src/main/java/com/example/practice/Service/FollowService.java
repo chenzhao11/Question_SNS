@@ -101,7 +101,8 @@ public class FollowService {
     public List<User> allFollower(int entity_type, int entity_id) {
         String key = new KeysTool().getFollowerKey(entity_type, entity_id);
         try {
-            return fromSetToList_user(redisAdapter.zrevrang(key, 0, -1));
+            int count=redisAdapter.zcard(key).intValue();
+            return fromSetToList_user(redisAdapter.zrevrang(key, 0, count));
 
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -138,8 +139,9 @@ public class FollowService {
 
     public List<Object> allFollowee(int entity_type, int userId) {
         String key = new KeysTool().getFolloweeKey(entity_type, userId);
+        int count =redisAdapter.zcard(key).intValue();
         try {
-            return fromSetToList(redisAdapter.zrevrang(key, 0, -1),entity_type);
+            return fromSetToList(redisAdapter.zrevrang(key, 0, count),entity_type);
 
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -180,7 +182,18 @@ public class FollowService {
         }
         return null;
     }
-
+    //当前用户是不是某一实体的粉丝
+   public boolean isfollower(int userId,int entity_type,int  entity_id){
+        try {
+            String key=new KeysTool().getFollowerKey(entity_type,entity_id);
+           if(redisAdapter.zscore(key,userId)>0) {
+               return  true;
+           }
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
+        return  false;
+   }
 
     private List<User> fromSetToList_user(Set<String> inputset) {
         User user = null;
