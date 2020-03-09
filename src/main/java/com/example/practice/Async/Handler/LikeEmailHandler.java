@@ -25,7 +25,7 @@ public class LikeEmailHandler implements EventHandler {
     @Override
     public void work(Event event) {
         String to="zzuzhaochen@163.com";
-        String subject="点赞信息";
+        String subject="警示信息";
         String template= "templates/mail/LikeTemplate.vm";
         User user=userService.getuserbyid(event.getEntity_owner());
         Map<String,Object> model=new HashMap<>();
@@ -35,6 +35,6 @@ public class LikeEmailHandler implements EventHandler {
 
     @Override
     public List<EventType> getSupportEvent() {
-        return Arrays.asList(EventType.LIKE,EventType.COMMENT);
+        return Arrays.asList(EventType.ALERT);
     }
 }

@@ -55,7 +55,7 @@ public class IndexController {
 
     @RequestMapping(path = {"/", "/index"})
     String indexpage(Model model) {
-        List<ViewObject> objectList = getViewObjectList(0, 0, 10);
+        List<ViewObject> objectList = getViewObjectList(0, 0, 1000);
         model.addAttribute("viewObject", objectList);
 
 
@@ -104,7 +104,7 @@ public class IndexController {
     @ExceptionHandler
     @ResponseBody
     String exceptionhandler(Exception e) {
-        return "some erro hapens!" + "<br>" + e.getMessage() + "<br>" + e.toString();
+        return "some erro hapens!" + "<br>" +  "<br>" + e.toString();
     }
 
 

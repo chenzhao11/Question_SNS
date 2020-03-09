@@ -2,11 +2,11 @@ package com.example.practice.Controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.practice.Model.EntityType;
-import com.example.practice.Model.User;
-import com.example.practice.Model.UserHolder;
-import com.example.practice.Model.ViewObject;
+import com.example.practice.Async.EventCreater;
+import com.example.practice.Async.EventType;
+import com.example.practice.Model.*;
 import com.example.practice.Service.FollowService;
+import com.example.practice.Service.QusestionService;
 import com.example.practice.Service.UserBaseInformation;
 import com.example.practice.Service.UserService;
 import com.example.practice.tools.GetJson;
@@ -36,6 +36,10 @@ public class FollowController {
     UserHolder userHolder;
     @Autowired
     UserBaseInformation userBaseInformation;
+    @Autowired
+    EventCreater eventCreater;
+    @Autowired
+    QusestionService qusestionService;
 
     @Autowired
     UserService userService;
@@ -107,6 +111,9 @@ private static final Logger logger= LoggerFactory.getLogger(FollowService.class)
         }
         if (followService.addFollower(userHolder.getUser().getId(), EntityType.ENTITY_USER, userId)) {
             Long followercount = followService.countFollower(EntityType.ENTITY_USER, userId);
+            Event event=new Event().setEvent_type(EventType.FOLLOW_USER).setAction_creater_id(userHolder.getUser().getId()).setEntity_id(userId)
+                    .setEntity_type(EntityType.ENTITY_USER).setEntity_owner(userId);
+            eventCreater.push(event);
             return GetJson.getJson(0, followercount.toString());
         }
 
@@ -121,6 +128,9 @@ private static final Logger logger= LoggerFactory.getLogger(FollowService.class)
         }
         try {
             followService.addFollower(userHolder.getUser().getId(),EntityType.ENTITY_QUESTION,questionId);
+            Event event=new Event().setEvent_type(EventType.FOLLOW_QUESTION).setAction_creater_id(userHolder.getUser().getId()).setEntity_id(questionId)
+                    .setEntity_type(EntityType.ENTITY_QUESTION).setEntity_owner(qusestionService.getQuestionById(questionId).getUserId());
+            eventCreater.push(event);
         }catch (Exception e){
             logger.error(e.getMessage());
         }

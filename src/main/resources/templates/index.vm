@@ -54,7 +54,7 @@
                                                 <span class="label sr-only">关注</span></button>
                                         </div>
                                         <div class="author-info">
-                                            <a href="/usermainpage?userid=$!{viewobject.user.id}"
+                                            <a href="/profile?userId=$!{viewobject.user.id}"
                                                data-tip="p$t$zhao-yong-feng" class="name">$!{viewobject.user.name}</a>
                                         </div>
                                         <div class="zm-item-vote-info" data-votecount="1082" data-za-module="VoteInfo">
@@ -63,8 +63,8 @@
                                                         <span class="js-voteCount">$!{viewobject.concern}</span>&nbsp;人关注</a></span>
                                         </div>
                                         <div class="post-content" data-author-name="$!{viewobject.user.name}"
-                                             data-entry-url="http://127.0.0.1/usermainpage?userid=$!{viewobject.user.id}">
-                                            <textarea>${viewobject.question.content}</textarea>
+                                             data-entry-url="http://127.0.0.1/profile?userid=$!{viewobject.user.id}">
+                                            <div>${viewobject.question.content}</div>
                                             <div class="zh-summary summary clearfix">
                                                 <a href="/detail?questionId=$!{viewobject.question.id}" class="toggle-expand">显示全部</a>
                                             </div>

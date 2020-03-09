@@ -1,7 +1,5 @@
 package com.example.practice.Controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.example.practice.Async.EventCreater;
 import com.example.practice.Async.EventType;
 import com.example.practice.Model.*;
@@ -26,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class QuestionDetailAndCommentController {
+public class QuestionDetailAndCommentandlikeController {
     @Autowired
     QusestionService qusestionService;
     @Autowired
@@ -39,7 +37,7 @@ public class QuestionDetailAndCommentController {
     RedisAdapter redisAdapter;
     @Autowired
     EventCreater eventCreater;
-private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndCommentController.class);
+private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndCommentandlikeController.class);
 
     @RequestMapping(path = "/detail")
     String getQuestionDetail(@RequestParam("questionId") int questionId, Model model){
@@ -79,15 +77,15 @@ private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndComm
         comment.setUserId(userHolder.getUser().getId());
         commentService.insertComment(comment);
 
-        //评论
-//        Event event=new Event();
-//        event.setAction_creater_id(userHolder.getUser().getId());
-//        event.setEntity_type(EntityType.ENTITY_QUESTION);
-//        event.setEntity_id(questionId);
-//        event.setEntity_owner(qusestionService.getQuestionById(questionId).getUserId());
-//        event.setEvent_type(EventType.COMMENT);
-//
-//        eventCreater.pushLikeCommentEvent(event);
+//        评论
+        Event event=new Event();
+        event.setAction_creater_id(userHolder.getUser().getId());
+        event.setEntity_type(EntityType.ENTITY_QUESTION);
+        event.setEntity_id(questionId);
+        event.setEntity_owner(qusestionService.getQuestionById(questionId).getUserId());
+        event.setEvent_type(EventType.COMMENT);
+
+        eventCreater.push(event);
 
 
 
@@ -121,7 +119,7 @@ private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndComm
         event.setEntity_owner(commentService.selectCommentbyid(commentId).getUserId());
         event.setEvent_type(EventType.LIKE);
         event.setEntity_type(EntityType.ENTITY_COMMENT);
-        eventCreater.pushLikeCommentEvent(event);
+        eventCreater.push(event);
         return GetJson.getJson(0,String.valueOf(redisAdapter.scard(likekey)));
     }
 

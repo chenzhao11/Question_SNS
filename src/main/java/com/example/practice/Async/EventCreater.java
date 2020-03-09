@@ -20,7 +20,7 @@ public class EventCreater {
     private static final Logger logger = LoggerFactory.getLogger(EventCreater.class);
     @Autowired
     RedisAdapter redisAdapter;
-    public int pushLikeCommentEvent(Event event) {
+    public int push(Event event) {
         String key = new KeysTool().getAsyncEventKey();
         String eventstr = JSON.toJSONString(event);
 

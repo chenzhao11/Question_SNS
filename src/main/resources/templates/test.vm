@@ -2,13 +2,14 @@
 
 
 
-    #foreach($viewObject in $viewObjectList)
+    #foreach($viewObject in $feeds)
 
 ##
 ##        ${viewObject.user.headUrl}<br>
 ##        ${viewObject.user.name}<br>
-        ${viewObject.comment.content}<br>
+        ${viewObject.actUser.headUrl}<br>
 
     #end
+
 
 </html>
