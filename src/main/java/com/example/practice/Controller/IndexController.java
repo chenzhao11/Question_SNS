@@ -55,7 +55,7 @@ public class IndexController {
 
     @RequestMapping(path = {"/", "/index"})
     String indexpage(Model model) {
-        List<ViewObject> objectList = getViewObjectList(0, 0, 1000);
+        List<ViewObject> objectList = getViewObjectList(0, 0, 20);
         model.addAttribute("viewObject", objectList);
 
 

@@ -22,7 +22,7 @@ public class SearchService {
     @Autowired
     QusestionService qusestionService;
     private static final Logger logger= LoggerFactory.getLogger(SearchService.class);
-    private static final  String baseUrl = "http://127.0.0.1:8983/solr/#/practice";
+    private static final  String baseUrl = "http://127.0.0.1:8983/solr/practice";
     private String HIGHLITE_FILED = "question_title,question_content,comment_content";
     private static final SolrClient solrClient = new HttpSolrClient.Builder(baseUrl).build();
     public List<Question>  search(String key,int offset,int count,String hlpre,String hlpost){

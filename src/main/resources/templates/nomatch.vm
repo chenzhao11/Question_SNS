@@ -1,0 +1,4 @@
+#parse("head.vm")
+<style type="text/css">._colors_text-muted_5fu-{color:#999}</style>
+<h1>对不起，没有相关结果！</h1>
+#parse("foot.vm")

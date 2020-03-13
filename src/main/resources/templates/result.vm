@@ -1,5 +1,5 @@
 #set($bodyclass = "page-search")
-#parse("header.html")
+#parse("head.vm")
 <link rel="stylesheet" href="../styles/result.css">
 <link rel="stylesheet" href="../styles/detail.css">
 <div class="zg-wrap zu-main clearfix" role="main">
@@ -39,5 +39,6 @@
         </div>
     </div>
 </div>
-#parse("js.html")
-#parse("footer.html")
+#parse("js.vm")
+</body>
+</html>

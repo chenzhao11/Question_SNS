@@ -1,0 +1,161 @@
+#parse("head.vm")
+<script type="text/javascript" async="" src="../images/res/za-0.1.1.min.js"></script>
+<script async="" src="../images/res/ga.js"></script>
+<link rel="stylesheet" href="../styles/result.css"/>
+<script src="../images/res/instant.e7a17de6.js"></script>
+<style type="text/css">._colors_text-muted_5fu-{color:#999}</style>
+
+<div class="zg-wrap zu-main clearfix" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <ul class="list contents navigable"
+                data-paging="{&quot;next&quot;: &quot;/r/search?q=qiche&amp;type=content&amp;offset=10&quot;}"
+                data-navigable="{&quot;items&quot;: &quot;&gt;.item .answer-item, &gt;.item.article-item&quot;}">
+
+                #foreach($vo in $vos)
+
+                <li class="item clearfix">
+                    <div class="title">
+                        <a target="_blank" href="http://127.0.0.1:8080/detail?questionId=$!{vo.question.id}" class="js-title-link">$!{vo.question.title}</a>
+                    </div>
+                    <div class="content">
+                        <meta itemprop="question-id" content="9102803"/>
+                        <meta itemprop="question-url-token" content="42237413"/>
+                        <ul class="answers">
+                            <li class="answer-item clearfix" data-za-module="AnswerItem">
+                                <div class="entry answer">
+                                    <link itemprop="url"
+                                          href="http://127.0.0.1:8080/detail?questionId=$!{vo.question.id}"/>
+                                    <meta itemprop="answer-id" content="38723370"/>
+                                    <meta itemprop="answer-url-token" content="108137941"/>
+                                    <div class="entry-left hidden-phone">
+                                        <div class="zm-votebar visible-expanded goog-scrollfloater"
+                                             data-za-module="VoteBar">
+                                            <button class="up" title="赞同" aria-pressed="false"><i
+                                                    class="icon vote-arrow"></i><span
+                                                    class="label sr-only">赞同</span><span class="count">$!{vo.followCount}</span>
+                                            </button>
+                                            <button class="down" title="反对，不会显示你的姓名" aria-pressed="false"><i
+                                                    class="icon vote-arrow"></i><span
+                                                    class="label sr-only">反对，不会显示你的姓名</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="entry-body">
+                                        <div class="entry-meta">
+                                            <strong class="author-line"><a class="author"
+                                                                           href="http://127.0.0.1:8080/profile?userId=$!{vo.user.id}"
+                                                                           data-tip="p$t$deng-fan-94">$!{vo.user.name}</a>，<span
+                                                    title="爱好广泛，就是不爱学习。" class="bio">$date.format("yyyy-MM-dd HH-mm-ss",$!{vo.question.createdDate})</span></strong>
+                                        </div>
+                                        <div class="entry-content js-collapse-body" data-author-name="noble6"
+                                             data-entry-url="http://127.0.0.1:8080/detail?questionId=$!{vo.question.id}">
+                                            <div class="summary hidden-expanded" style="">
+                                               $!{vo.question.content}...
+                                                <a class="toggle-expand inline"
+                                                   href="http://127.0.0.1:8080/detail?questionId=$!{vo.question.id}">显示全部</a>
+                                            </div>
+                                        </div>
+                                        <div class="actions clearfix js-contentActions">
+                                            <span class="hidden-tablet hidden-desktop"><a
+                                                    href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                                    class="action-item votenum-mobile zm-item-vote-count js-openVoteDialog"><span
+                                                    data-bind-votecount="">$!{vo.followCount}</span><i class="zg-icon arrow"></i></a></span>
+                                            <a href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                               class="action-item zg-follow" data-follow="q:link" data-id="9102803"><i
+                                                    class="z-icon-follow"></i>关注问题</a>
+                                            <a href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                               class="action-item js-toggleCommentBox"><i
+                                                    class="z-icon-comment"></i><span class="label">$!{vo.question.commentCount}条评论</span></a>
+                                            <a href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                               class="action-item visible-focusin js-thank  hidden-phone"><i
+                                                    class="z-icon-thank"></i>感谢</a>
+                                            <a href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                               class="action-item visible-focusin js-share hidden-phone goog-inline-block goog-menu-button"
+                                               role="button" aria-expanded="false" tabindex="0" aria-haspopup="true"
+                                               style="-webkit-user-select: none;">
+                                                <div class="goog-inline-block goog-menu-button-outer-box">
+                                                    <div class="goog-inline-block goog-menu-button-inner-box">
+                                                        <div class="goog-inline-block goog-menu-button-caption">
+                                                            <i class="z-icon-share"></i>分享
+                                                        </div>
+                                                        <div class="goog-inline-block goog-menu-button-dropdown">
+                                                            &nbsp;
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                               class="action-item visible-focusin js-collect hidden-phone"><i
+                                                    class="z-icon-collect"></i>收藏</a>
+                                            <span class="bull visible-focusin hidden-phone">•</span>
+                                            <a href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                               class="action-item visible-focusin js-report hidden-phone">举报</a>
+                                            <span class="bull hidden-phone">•</span>
+                                            <a href="https://www.nowcoder.com/terms#sec-licence-1" target="_blank"
+                                               class="action-item js-copyright hidden-phone">作者保留权利</a>
+                                            <span class="hidden-tablet hidden-desktop phone-actions"><a
+                                                    href="https://www.nowcoder.com/search?type=content&amp;q=qiche#"
+                                                    class="button-text menubutton goog-inline-block goog-menu-button"
+                                                    role="button" aria-expanded="false" tabindex="0"
+                                                    aria-haspopup="true" style="-webkit-user-select: none;">
+               <div class="goog-inline-block goog-menu-button-outer-box">
+                <div class="goog-inline-block goog-menu-button-inner-box">
+                 <div class="goog-inline-block goog-menu-button-caption">
+                  <i class="zg-icon zg-icon-ellipsis-mobi"></i>
+                  <span class="hide-text">更多</span>
+                 </div>
+                 <div class="goog-inline-block goog-menu-button-dropdown">
+                  &nbsp;
+                 </div>
+                </div>
+               </div></a>
+              <div class="menu goog-menu goog-menu-vertical zh-answer-more-actions"
+                   style="display: none; -webkit-user-select: none;" role="menu" aria-haspopup="true">
+               <div class="goog-menuitem js-share" role="menuitem" id=":m" style="-webkit-user-select: none;">
+                <div class="goog-menuitem-content" style="-webkit-user-select: none;">
+                 分享
+                </div>
+               </div>
+               <div class="goog-menuseparator" aria-disabled="true" role="separator" id=":n"
+                    style="-webkit-user-select: none;"></div>
+               <div class="goog-menuitem js-collect" role="menuitem" id=":o" style="-webkit-user-select: none;">
+                <div class="goog-menuitem-content" style="-webkit-user-select: none;">
+                 收藏
+                </div>
+               </div>
+               <div class="goog-menuseparator" aria-disabled="true" role="separator" id=":p"
+                    style="-webkit-user-select: none;"></div>
+               <div class="goog-menuitem js-thank " role="menuitem" id=":q" style="-webkit-user-select: none;">
+                <div class="goog-menuitem-content" style="-webkit-user-select: none;">
+                 感谢
+                </div>
+               </div>
+               <div class="goog-menuseparator" aria-disabled="true" role="separator" id=":r"
+                    style="-webkit-user-select: none;"></div>
+               <div class="goog-menuitem js-report" role="menuitem" id=":s" style="-webkit-user-select: none;">
+                <div class="goog-menuitem-content" style="-webkit-user-select: none;">
+                 举报
+                </div>
+               </div>
+              </div></span>
+                                            <span class="bull hidden-tablet hidden-desktop">•</span>
+                                            <a href="https://www.nowcoder.com/terms#sec-licence-1" target="_blank"
+                                               class="action-item js-copyright hidden-tablet hidden-desktop">作者保留权利</a>
+                                            <button class="action-item item-collapse js-collapse"><i
+                                                    class="z-icon-fold"></i>收起
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                #end
+            </ul>
+        </div>
+    </div>
+</div>
+#parse("js.vm")
+</body>
+</html>
