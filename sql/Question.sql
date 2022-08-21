@@ -1,61 +1,172 @@
-SELECT * FROM practice.user;
-CREATE TABLE `practice`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(64) NOT NULL,
-  `salt` VARCHAR(128) NULL,
-  `head_url` VARCHAR(128) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC));
-CREATE TABLE `practice`.`question` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(128) NOT NULL,
-  `content` LONGTEXT NULL,
-  `user_id` INT NOT NULL,
-  `created_date` DATETIME NOT NULL,
-  `comment_count` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `_idx` (`user_id` ASC),
-  CONSTRAINT `user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `practice`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-CREATE TABLE `practice`.`ticket` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `status` INT NOT NULL,
-  `expired` DATETIME NOT NULL,
-  `ticket` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `ticket` (`ticket` ASC));
-CREATE TABLE `practice`.`comment` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `content` LONGTEXT NULL,
-  `created_date` DATETIME NULL,
-  `user_id` INT NOT NULL,
-  `entity_id` INT NOT NULL,
-  `entity_type` INT NOT NULL,
-  `status` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `commentindex` (`entity_type` ASC, `entity_id` ASC));
-CREATE TABLE `practice`.`message` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `content` LONGTEXT NOT NULL,
-  `fromid` INT NOT NULL,
-  `toid` INT NOT NULL,
-  `conversation_id` VARCHAR(128) NOT NULL,
-  `created_date` DATETIME NOT NULL,
-  `has_read` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `messageIndex` (`conversation_id` ASC, `toid` ASC, `fromid` ASC));
-CREATE TABLE `practice`.`feed` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `type` INT NOT NULL,
-  `data` LONGTEXT NULL,
-  `created_date` DATETIME NOT NULL,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `user_id` (`user_id` ASC));
+/*
+ Navicat MySQL Data Transfer
 
+ Source Server         : Tencent
+ Source Server Type    : MySQL
+ Source Server Version : 50736
+ Source Host           : 43.142.166.196:3308
+ Source Schema         : practice
 
+ Target Server Type    : MySQL
+ Target Server Version : 50736
+ File Encoding         : 65001
+
+ Date: 21/08/2022 23:19:09
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for comment
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `created_date` datetime NULL DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `entity_id` int(11) NOT NULL,
+  `entity_type` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `commentindex`(`entity_type`, `entity_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for feed
+-- ----------------------------
+DROP TABLE IF EXISTS `feed`;
+CREATE TABLE `feed`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) NOT NULL,
+  `data` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `created_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of feed
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for message
+-- ----------------------------
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fromid` int(11) NOT NULL,
+  `toid` int(11) NOT NULL,
+  `conversation_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `has_read` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `messageIndex`(`conversation_id`, `toid`, `fromid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of message
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mqmessage
+-- ----------------------------
+DROP TABLE IF EXISTS `mqmessage`;
+CREATE TABLE `mqmessage`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_id` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `msg` json NULL,
+  `status` int(11) NULL DEFAULT 0,
+  `send_times` int(11) NULL DEFAULT 0,
+  `version` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `message_id`(`message_id`) USING BTREE,
+  INDEX `status`(`status`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mqmessage
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for question
+-- ----------------------------
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE `question`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `user_id` int(11) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `comment_count` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `_idx`(`user_id`) USING BTREE,
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of question
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for status
+-- ----------------------------
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE `status`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of status
+-- ----------------------------
+INSERT INTO `status` VALUES (0, 'init');
+INSERT INTO `status` VALUES (1, 'send');
+INSERT INTO `status` VALUES (2, 'consumed');
+INSERT INTO `status` VALUES (3, 'exception');
+
+-- ----------------------------
+-- Table structure for ticket
+-- ----------------------------
+DROP TABLE IF EXISTS `ticket`;
+CREATE TABLE `ticket`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `expired` datetime NOT NULL,
+  `ticket` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `ticket`(`ticket`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ticket
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `salt` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `head_url` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name_UNIQUE`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+
+SET FOREIGN_KEY_CHECKS = 1;

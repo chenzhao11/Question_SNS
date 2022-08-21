@@ -5,6 +5,9 @@ import com.example.practice.Async.EventType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 使用redis做消息队列使用的消息数据结构
+ */
 public class Event {
     private EventType event_type;
     private int action_creater_id;
@@ -57,6 +60,10 @@ public class Event {
 
     public Event setMap(String key,String value) {
         map.put(key,value);
+        return this;
+    }
+    public Event setMapAll(Map<String, Object> map) {
+        this.map = map;
         return this;
     }
 
