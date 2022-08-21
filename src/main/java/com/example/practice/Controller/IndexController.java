@@ -5,14 +5,10 @@ import com.example.practice.Service.CommentService;
 import com.example.practice.Service.FollowService;
 import com.example.practice.Service.QusestionService;
 import com.example.practice.Service.UserService;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -53,25 +49,23 @@ public class IndexController {
 
     }
 
-    @RequestMapping(path = {"/", "/index"})
+    @RequestMapping(path = {"/","/index"})
     String indexpage(Model model) {
         List<ViewObject> objectList = getViewObjectList(0, 0, 20);
         model.addAttribute("viewObject", objectList);
-
-
         return "index";
     }
 
     @RequestMapping(path = "/profile")
     String authorlatest(@RequestParam("userId") int userid, Model model) {
-//        List<ViewObject> objectList = getViewObjectList(userid, 0, 10);
-//        model.addAttribute("viewObject", objectList);
+        //        List<ViewObject> objectList = getViewObjectList(userid, 0, 10);
+        //        model.addAttribute("viewObject", objectList);
         ViewObject viewObject=new ViewObject();
         User user=userService.getuserbyid(userid);
         boolean followed=followService.isfollower(userHolder.getUser().getId(), EntityType.ENTITY_USER,userid);
         int followerCount=followService.countFollower(EntityType.ENTITY_USER,userid).intValue();
         int followeeCount=followService.countFollowee(userid,EntityType.ENTITY_USER).intValue();
-         int commentCount=commentService.countComment(userid);
+        int commentCount=commentService.countComment(userid);
         viewObject.set("user",user);
         viewObject.set("followed",followed);
         viewObject.set("followerCount",followerCount);
@@ -86,20 +80,20 @@ public class IndexController {
         return "profile";
     }
 
-//    @RequestMapping(path = {"/test"})
-//    @ResponseBody
-//    String indextest( HttpSession session){
-//        List<ViewObject> objectList=getViewObjectList(0,20,10);
-//        StringBuffer stringBuffer=new StringBuffer();
-//        for (ViewObject object:objectList
-//             ) {
-//            stringBuffer.append(object.get("user").toString()+"==========="+object.get("question").toString()
-//            +"<br>");
-//
-//        }
-//        return  stringBuffer.toString();
-//
-//    }
+    //    @RequestMapping(path = {"/test"})
+    //    @ResponseBody
+    //    String indextest( HttpSession session){
+    //        List<ViewObject> objectList=getViewObjectList(0,20,10);
+    //        StringBuffer stringBuffer=new StringBuffer();
+    //        for (ViewObject object:objectList
+    //             ) {
+    //            stringBuffer.append(object.get("user").toString()+"==========="+object.get("question").toString()
+    //            +"<br>");
+    //
+    //        }
+    //        return  stringBuffer.toString();
+    //
+    //    }
 
     @ExceptionHandler
     @ResponseBody
@@ -109,6 +103,5 @@ public class IndexController {
 
 
 }
-
 
 

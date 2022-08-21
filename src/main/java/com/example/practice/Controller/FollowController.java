@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.practice.Async.EventCreater;
 import com.example.practice.Async.EventType;
+import com.example.practice.Async.kafka.MQEventProducer;
 import com.example.practice.Model.*;
 import com.example.practice.Service.FollowService;
 import com.example.practice.Service.QusestionService;
 import com.example.practice.Service.UserBaseInformation;
 import com.example.practice.Service.UserService;
+import com.example.practice.common.Topic;
 import com.example.practice.tools.GetJson;
 import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock;
 import org.slf4j.Logger;
@@ -40,6 +42,8 @@ public class FollowController {
     EventCreater eventCreater;
     @Autowired
     QusestionService qusestionService;
+    @Autowired
+    MQEventProducer mqEventProducer;
 
     @Autowired
     UserService userService;
@@ -113,7 +117,11 @@ private static final Logger logger= LoggerFactory.getLogger(FollowService.class)
             Long followercount = followService.countFollower(EntityType.ENTITY_USER, userId);
             Event event=new Event().setEvent_type(EventType.FOLLOW_USER).setAction_creater_id(userHolder.getUser().getId()).setEntity_id(userId)
                     .setEntity_type(EntityType.ENTITY_USER).setEntity_owner(userId);
-            eventCreater.push(event);
+            // 使用redis
+            //            eventCreater.push(event);
+            // 使用kafka
+            mqEventProducer.sendMessage(Topic.FOLLOW_USER, event);
+
             return GetJson.getJson(0, followercount.toString());
         }
 
@@ -130,7 +138,10 @@ private static final Logger logger= LoggerFactory.getLogger(FollowService.class)
             followService.addFollower(userHolder.getUser().getId(),EntityType.ENTITY_QUESTION,questionId);
             Event event=new Event().setEvent_type(EventType.FOLLOW_QUESTION).setAction_creater_id(userHolder.getUser().getId()).setEntity_id(questionId)
                     .setEntity_type(EntityType.ENTITY_QUESTION).setEntity_owner(qusestionService.getQuestionById(questionId).getUserId());
-            eventCreater.push(event);
+            // 使用redis
+            //            eventCreater.push(event);
+            // 使用kafka
+            mqEventProducer.sendMessage(Topic.FOLLOW_QUESTION, event);
         }catch (Exception e){
             logger.error(e.getMessage());
         }
