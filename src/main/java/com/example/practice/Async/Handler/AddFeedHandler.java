@@ -33,7 +33,6 @@ public class AddFeedHandler implements EventHandler {
     public void work(Event event) {
         try {
 
-
         if(event.getEvent_type()==EventType.LIKE){
             Feed feed=new Feed();
             feed.setCreatedDate(new Date());
@@ -103,8 +102,6 @@ public class AddFeedHandler implements EventHandler {
             feed.setData(JSONObject.toJSONString(map));
             feedDao.addFeed(feed);
         }
-
-
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

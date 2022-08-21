@@ -2,10 +2,12 @@ package com.example.practice.Controller;
 
 import com.example.practice.Async.EventCreater;
 import com.example.practice.Async.EventType;
+import com.example.practice.Async.kafka.MQEventProducer;
 import com.example.practice.Model.*;
 import com.example.practice.Service.CommentService;
 import com.example.practice.Service.QusestionService;
 import com.example.practice.Service.UserService;
+import com.example.practice.common.Topic;
 import com.example.practice.tools.GetJson;
 import com.example.practice.tools.KeysTool;
 import com.example.practice.tools.RedisAdapter;
@@ -37,6 +39,9 @@ public class QuestionDetailAndCommentandlikeController {
     RedisAdapter redisAdapter;
     @Autowired
     EventCreater eventCreater;
+    @Autowired
+    MQEventProducer mqEventProducer;
+
 private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndCommentandlikeController.class);
 
     @RequestMapping(path = "/detail")
@@ -84,8 +89,10 @@ private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndComm
         event.setEntity_id(questionId);
         event.setEntity_owner(qusestionService.getQuestionById(questionId).getUserId());
         event.setEvent_type(EventType.COMMENT);
-
-        eventCreater.push(event);
+        // 使用redis
+//        eventCreater.push(event);
+        // 使用kafka
+        mqEventProducer.sendMessage(Topic.COMMENT, event);
 
 
 
@@ -119,7 +126,10 @@ private static final Logger logger=LoggerFactory.getLogger(QuestionDetailAndComm
         event.setEntity_owner(commentService.selectCommentbyid(commentId).getUserId());
         event.setEvent_type(EventType.LIKE);
         event.setEntity_type(EntityType.ENTITY_COMMENT);
-        eventCreater.push(event);
+        // 使用redis
+//        eventCreater.push(event);
+        // 使用kafka
+        mqEventProducer.sendMessage(Topic.LIKE, event);
         return GetJson.getJson(0,String.valueOf(redisAdapter.scard(likekey)));
     }
 
